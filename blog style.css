@@ -1,0 +1,1206 @@
+@import url('https://fonts.googleapis.com/css?family=Heebo:400,700|Open+Sans:400,700');
+
+:root {
+  --color: #B74695;
+  --transition-time: 0.5s;
+}
+
+.cards-wrapper {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 4rem;
+  padding: 4rem;
+  margin: 0 auto;
+  width: max-content;
+}
+
+.card {
+  font-family: 'Heebo';
+  --bg-filter-opacity: 0.5;
+  background-image: linear-gradient(rgba(0, 0, 0, var(--bg-filter-opacity)), rgba(0, 0, 0, var(--bg-filter-opacity))), var(--bg-img);
+  height: 16em;
+  width: 13em;
+  font-size: 1.5em;
+  /* color: white; */
+  
+  border-radius: 1em;
+  padding: 1em;
+  /*margin: 2em;*/
+  display: flex;
+  align-items: flex-start;
+  background-size: cover;
+  background-position: center;
+  transition: all, var(--transition-time);
+  position: relative;
+  overflow: hidden;
+  border: 10px solid #ccc;
+  text-decoration: none;
+}
+
+.card:hover {
+  transform: rotate(0);
+}
+
+.card h3 {
+  color: rgb(209, 202, 202);
+  margin-top: 2em;
+  font-size: 1em;
+  line-height: 1.2em;
+}
+
+.card p {
+  font-size: 0.75em;
+  font-family: 'Open Sans';
+  margin-top: 0.5em;
+  line-height: 2em;
+}
+
+.card .tags {
+  display: flex-start;
+  margin-top: 230%; 
+}
+
+.card .tags .tag {
+  font-size: 0.75em;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.3rem;
+  padding: 0 0.5em;
+  margin-right: 0.5em;
+  line-height: 1.5em;
+  transition: all, var(--transition-time);
+}
+
+.card:hover .tags .tag {
+  background: var(--color);
+  color: white;
+}
+
+.card .date {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.75em;
+  padding: 1em;
+  /* line-height: 1em; */
+  opacity: .8;
+  backdrop-filter: blur(8px);
+}
+
+.card:before,
+.card:after {
+  content: '';
+  transform: scale(0);
+  transform-origin: top left;
+  border-radius: 50%;
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  z-index: -5;
+  transition: all, var(--transition-time);
+  transition-timing-function: ease-in-out;
+}
+
+.card:before {
+  background: #ddd;
+  width: 250%;
+  height: 250%;
+}
+
+.card:after {
+  background: white;
+  width: 200%;
+  height: 200%;
+}
+
+.card:hover {
+  color: var(--color);
+}
+
+.card:hover:before,
+.card:hover:after {
+  transform: scale(1);
+}
+
+.card-grid-space .num {
+  font-size: 3em;
+  margin-bottom: 1.2rem;
+  margin-left: 1rem;
+}
+
+.info {
+  font-size: 1.2em;
+  display: flex;
+  padding: 1em 3em;
+  height: 3em;
+}
+
+.info img {
+  height: 3em;
+  margin-right: 0.5em;
+}
+
+.info h1 {
+  font-size: 1em;
+  font-weight: normal;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1285px) {
+  .cards-wrapper {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cards-wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .info {
+    justify-content: center;
+  }
+
+  .card-grid-space .num {
+    margin-left: 0;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .cards-wrapper {
+    padding: 4rem 2rem;
+  }
+
+  .card {
+    max-width: calc(100vw - 4rem);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .info {
+    display: block;
+    text-align: center;
+  }
+
+  .info h1 {
+    margin: 0;
+  }
+}
+
+/* POPUP */
+
+.modal1 {
+  overflow: hidden;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: -1;
+}
+
+.modal-content1 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 70rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content1{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content1{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content1{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content1{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content1{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button1 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+  /* transform: translate3d(-50%, -50%, 0); */
+  /* z-index: 999; */
+}
+
+.close-button1:hover {
+  background-color: darkgray;
+}
+
+.show-modal1 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* Trigger 2 */
+.modal2 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content2 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content2{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content2{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content2{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content2{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content2{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button2 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button2:hover {
+  background-color: darkgray;
+}
+.show-modal2 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* Trigger 3 */
+.modal3 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content3 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content3{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content3{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content3{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content3{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content3{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button3 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button3:hover {
+  background-color: darkgray;
+}
+
+.show-modal3 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+/* Trigger 4*/
+
+.modal4 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content4 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content4{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content4{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content4{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content4{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content4{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button4 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button4:hover {
+  background-color: darkgray;
+}
+.show-modal4 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* Trigger 5 */
+
+.modal5 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content5 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content5{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content5{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content5{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content5{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content5{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button5 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button5:hover {
+  background-color: darkgray;
+}
+
+.show-modal5 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* Trigger 6 */
+
+.modal6 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content6 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content6{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content6{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content6{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content6{
+    font-size: 12px;
+    width: 30rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content6{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button6 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button6:hover {
+  background-color: darkgray;
+}
+
+.show-modal6 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* Trigger 7 */
+
+.modal7 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content7 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content7{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content7{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content7{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content7{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content7{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button7 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button7:hover {
+  background-color: darkgray;
+}
+
+.show-modal7 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+
+/* Trigger 8 */
+
+.modal8 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content8 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content8{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content8{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content8{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content8{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content8{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button8 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button8:hover {
+  background-color: darkgray;
+}
+
+.show-modal8 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+/* Trigger 9 */
+
+.modal9 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content9 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content9{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content9{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content9{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content9{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content9{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button9 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button9:hover {
+  background-color: darkgray;
+}
+
+.show-modal9 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
+/* Trigger 10 */
+
+.modal10 {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+
+.modal-content10 {
+  max-height: 80vh; /* Set maximum height for the modal content */
+  overflow-y: auto; /* Enable vertical scrolling if content exceeds the height */
+  margin-top: 3%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 50rem;
+  border-radius: 0.5rem;
+}
+
+@media screen and (max-width: 1056px){
+  .modal-content10{
+    width: 35rem;
+    height: 35rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 983px){
+  .modal-content10{
+    width: 25rem;
+    height: 25rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 553px){
+  .modal-content10{
+    width: 22rem;
+    height: 22rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 482px){
+  .modal-content10{
+    font-size: 12px;
+    width: 20rem;
+    height: 30rem;
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 341px){
+  .modal-content10{
+    font-size: 10px;
+    width: 15rem;
+    height: 20rem;
+    margin-top: 40px;
+  }
+}
+
+.close-button10 {
+  float: right;
+  /* display: block; */
+  position: sticky;
+  position: -webkit-sticky;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 10px; 
+  /* margin-right: 10px; */
+  width: 1.5rem;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+
+.close-button10:hover {
+  background-color: darkgray;
+}
+
+.show-modal10 {
+  opacity: 1;
+  visibility: visible;
+  transform: scale(1.0);
+  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+}
